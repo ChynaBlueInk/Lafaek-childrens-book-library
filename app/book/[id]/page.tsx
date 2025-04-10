@@ -64,8 +64,8 @@ export default function BookPage() {
       <main className="flex-1 flex flex-col items-center justify-center p-4">
         {isClient ? (
           <div className="w-full max-w-5xl h-[80vh] bg-white border-2 border-orange-200 rounded-md shadow-md">
-            <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-              <Viewer fileUrl={book.pdf} />
+<Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+<Viewer fileUrl={book.pdf} />
             </Worker>
           </div>
         ) : (
