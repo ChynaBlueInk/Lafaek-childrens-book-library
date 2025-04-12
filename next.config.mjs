@@ -29,8 +29,8 @@ const nextConfig = {
   },
 }
 
+// Merge with user config if available
 if (userConfig) {
-  // ESM imports will have a "default" property
   const config = userConfig.default || userConfig
 
   for (const key in config) {
@@ -46,6 +46,17 @@ if (userConfig) {
       nextConfig[key] = config[key]
     }
   }
+}
+
+// ⛔️ Exclude canvas module from Vercel/server builds
+nextConfig.webpack = (config, { isServer }) => {
+  if (isServer || process.env.VERCEL === '1') {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      canvas: false,
+    }
+  }
+  return config
 }
 
 export default nextConfig
