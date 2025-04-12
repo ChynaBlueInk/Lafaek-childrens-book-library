@@ -3,20 +3,9 @@ import Image from "next/image"
 import { Book, Download, Home, Info, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { books } from "@/lib/books" // ✅ Use real book data here
 
 export default function LibraryPage() {
-  // Sample book data
-  const books = [
-    { id: 1, title: "The Lafaek Adventure", cover: "/placeholder.svg?height=200&width=150&text=Book1" },
-    { id: 2, title: "Crocodile Friends", cover: "/placeholder.svg?height=200&width=150&text=Book2" },
-    { id: 3, title: "Ocean Explorers", cover: "/placeholder.svg?height=200&width=150&text=Book3" },
-    { id: 4, title: "Jungle Safari", cover: "/placeholder.svg?height=200&width=150&text=Book4" },
-    { id: 5, title: "Fairy Tales", cover: "/placeholder.svg?height=200&width=150&text=Book5" },
-    { id: 6, title: "Animal Kingdom", cover: "/placeholder.svg?height=200&width=150&text=Book6" },
-    { id: 7, title: "Pirate Treasure", cover: "/placeholder.svg?height=200&width=150&text=Book7" },
-    { id: 8, title: "Space Adventures", cover: "/placeholder.svg?height=200&width=150&text=Book8" },
-  ]
-
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-orange-50 to-yellow-50">
       {/* Header */}
@@ -102,4 +91,3 @@ export default function LibraryPage() {
     </div>
   )
 }
-

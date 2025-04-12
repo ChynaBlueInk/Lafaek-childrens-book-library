@@ -13,7 +13,7 @@ export interface Book {
       id: 1,
       title: "Hide and Seek",
       cover: "/images/jungle-adventure.jpg", // Placeholder image for now
-      pdf: "/books/HIDE-AND-SEEK.pdf",
+      pdf: "/book/HIDE-AND-SEEK.pdf",
       isFeatured: true,
       lastReadPage: null,
     },
@@ -21,7 +21,7 @@ export interface Book {
       id: 2,
       title: "Hammy the Hamster",
       cover: "/images/HammyTheHamster_Cover.png", // ✅ Your actual cover
-      pdf: "/books/HAMMY-THE-HAMSTER.pdf",
+      pdf: "/book/HAMMY-THE-HAMSTER.pdf",
       isFeatured: true,
       lastReadPage: null,
     },
