@@ -32,11 +32,11 @@ export default function LibraryPage() {
         <div className="mb-6">
           <h2 className="text-xl font-bold text-green-600 mb-2">Categories</h2>
           <div className="flex gap-2 overflow-x-auto pb-2">
-            {["All Books", "Adventure", "Fantasy", "Animals", "Science", "History"].map((category) => (
+            {["All", "Children", "Magazine", "Video"].map((category) => (
               <Button
                 key={category}
-                variant={category === "All Books" ? "default" : "outline"}
-                className={category === "All Books" ? "bg-green-600" : ""}
+                variant={category === "All" ? "default" : "outline"}
+                className={category === "All" ? "bg-green-600" : ""}
                 size="sm"
               >
                 {category}
@@ -45,7 +45,7 @@ export default function LibraryPage() {
           </div>
         </div>
 
-        <h2 className="text-xl font-bold text-green-600 mb-4">All Books</h2>
+        <h2 className="text-xl font-bold text-green-600 mb-4">All</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
           {books.map((book) => (
             <Link key={book.id} href={`/book/${book.id}`} className="group">
