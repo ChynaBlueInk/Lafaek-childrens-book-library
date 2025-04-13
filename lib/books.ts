@@ -12,7 +12,7 @@ export interface Book {
     {
       id: 1,
       title: "Hide and Seek",
-      cover: "/images/hideandseek.png", // Placeholder image for now
+      cover: "/images/hide-and-seek.png", // Placeholder image for now
       pdf: "/book/HIDE-AND-SEEK.pdf",
       isFeatured: true,
       lastReadPage: null,
