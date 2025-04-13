@@ -18,7 +18,6 @@ import { books } from "@/lib/books";
 
 // Disable the worker to avoid the importScripts error.
 // (For now we disable worker; later, if you want to fix worker issues, we can revisit that.)
-(pdfjs as any).disableWorker = true;
 
 export default function BookPage() {
   // Use destructuring to extract the toast function.
