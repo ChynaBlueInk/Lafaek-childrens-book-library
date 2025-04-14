@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Book, Download, Home, Info } from "lucide-react"
+import { Book, Download, Home, Info, Gamepad2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { books } from "@/lib/books"
 
@@ -74,7 +74,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Main Action Button */}
+        {/* Main Action Buttons */}
         <Link href="/library" className="mt-6">
           <Button
             size="lg"
@@ -82,6 +82,17 @@ export default function HomePage() {
           >
             Read a Book
             <Book className="ml-2 h-6 w-6" />
+          </Button>
+        </Link>
+
+        {/* New Fun Zone Button */}
+        <Link href="/fun" className="mt-2">
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full px-8 py-6 text-xl font-bold shadow-lg transition-transform hover:scale-105"
+          >
+            Visit Fun Zone
+            <Gamepad2 className="ml-2 h-6 w-6" />
           </Button>
         </Link>
       </main>
