@@ -1,12 +1,11 @@
-export const dynamic = "force-dynamic";
+"use client";
 
-"use client"
+export const dynamic = "force-dynamic";
 
 import { useState } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Gamepad2, Music, Palette, Star, PuzzleIcon } from "lucide-react"
-
 import { Button } from "@/components/ui/button"
 
 export default function HomePage() {
