@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 "use client"
 
 import { useState } from "react"
@@ -17,8 +19,6 @@ export default function HomePage() {
     { id: "drawing", icon: <Palette size={32} />, label: "Drawing", color: "#9D65C9", path: "/fun/drawing" },
     { id: "dragdrop", icon: <PuzzleIcon size={32} />, label: "Drag & Drop", color: "#5CB85C", path: "/fun/dragdrop" },
   ]
-
-
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-100 to-purple-100 flex flex-col items-center justify-center p-4">
@@ -83,14 +83,8 @@ export default function HomePage() {
               <motion.div
                 key={i}
                 className="w-4 h-4 rounded-full bg-purple-400"
-                animate={{
-                  y: [0, -15, 0],
-                }}
-                transition={{
-                  repeat: Number.POSITIVE_INFINITY,
-                  duration: 1,
-                  delay: i * 0.1,
-                }}
+                animate={{ y: [0, -15, 0] }}
+                transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1, delay: i * 0.1 }}
               />
             ))}
           </div>
