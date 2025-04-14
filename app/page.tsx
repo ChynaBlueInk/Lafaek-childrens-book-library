@@ -96,6 +96,7 @@ export default function HomePage() {
           </Button>
         </Link>
       </main>
+      // Force redeploy
 
       {/* Bottom Navigation */}
       <nav className="sticky bottom-0 w-full bg-white border-t-2 border-orange-100 shadow-lg rounded-t-xl">
