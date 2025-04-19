@@ -1,30 +1,40 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Book, Download, Home, Info, Trash2 } from "lucide-react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 
+interface DownloadedBook {
+  id: number
+  title: string
+  cover: string
+  downloadDate: string
+}
+
 export default function DownloadsPage() {
-  // Sample downloaded books data
-  const downloadedBooks = [
-    {
-      id: 1,
-      title: "The Lafaek Adventure",
-      cover: "/placeholder.svg?height=200&width=150&text=Book1",
-      downloadDate: "2025-04-05",
-    },
-    {
-      id: 3,
-      title: "Ocean Explorers",
-      cover: "/placeholder.svg?height=200&width=150&text=Book3",
-      downloadDate: "2025-04-03",
-    },
-    {
-      id: 5,
-      title: "Fairy Tales",
-      cover: "/placeholder.svg?height=200&width=150&text=Book5",
-      downloadDate: "2025-04-01",
-    },
-  ]
+  const [downloadedBooks, setDownloadedBooks] = useState<DownloadedBook[]>([])
+
+  // Load from localStorage
+  useEffect(() => {
+    const stored = localStorage.getItem("downloads")
+    if (stored) {
+      try {
+        setDownloadedBooks(JSON.parse(stored))
+      } catch (err) {
+        console.error("Failed to parse downloads:", err)
+        setDownloadedBooks([])
+      }
+    }
+  }, [])
+
+  // Remove a book from downloads
+  const handleDelete = (id: number) => {
+    const updated = downloadedBooks.filter(book => book.id !== id)
+    setDownloadedBooks(updated)
+    localStorage.setItem("downloads", JSON.stringify(updated))
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-orange-50 to-yellow-50">
@@ -72,7 +82,12 @@ export default function DownloadsPage() {
                           Read
                         </Button>
                       </Link>
-                      <Button size="sm" variant="outline" className="text-red-500 border-red-200 hover:bg-red-50">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="text-red-500 border-red-200 hover:bg-red-50"
+                        onClick={() => handleDelete(book.id)}
+                      >
                         <Trash2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -94,7 +109,7 @@ export default function DownloadsPage() {
       </main>
 
       {/* Bottom Navigation */}
-      <nav className="sticky bottom-0 w-full bg-white border-t-2 border-orange-100 shadow-lg rounded-t-xl">
+      <nav className="sticky bottom-0 w-full bg-white border-t-2 border-orange-100 shadow-lg rounded-t-xl z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-around py-3">
             <Link href="/" className="flex flex-col items-center text-gray-500 hover:text-orange-600">
@@ -119,4 +134,3 @@ export default function DownloadsPage() {
     </div>
   )
 }
-

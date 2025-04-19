@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Book, Download, Home, Info, Gamepad2 } from "lucide-react"
@@ -6,6 +9,24 @@ import { books } from "@/lib/books"
 
 export default function HomePage() {
   const featuredBooks = books.filter((book) => book.isFeatured)
+
+  const [progress, setProgress] = useState<{
+    id: number
+    title: string
+    cover: string
+    page: number
+  } | null>(null)
+
+  useEffect(() => {
+    const saved = localStorage.getItem("continueReading")
+    if (saved) {
+      try {
+        setProgress(JSON.parse(saved))
+      } catch (e) {
+        console.error("Failed to parse reading progress", e)
+      }
+    }
+  }, [])
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-orange-50 to-yellow-50">
@@ -51,26 +72,32 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Reading Progress (static for now) */}
+          {/* Continue Reading */}
           <div className="bg-white rounded-2xl p-6 shadow-lg border-2 border-green-200">
             <h3 className="text-xl font-bold text-green-600 mb-4">Continue Reading</h3>
-            <div className="flex items-center gap-4">
-              <div className="relative w-20 h-28">
-                <Image
-                  src="/placeholder.svg?height=120&width=90&text=Book"
-                  alt="Current book"
-                  fill
-                  className="object-cover rounded-lg border-2 border-orange-200"
-                />
-              </div>
-              <div className="flex-1">
-                <h4 className="font-bold text-gray-800">The Lafaek Adventure</h4>
-                <p className="text-sm text-gray-600 mb-2">Page 12 of 24</p>
-                <div className="w-full bg-gray-200 rounded-full h-2.5">
-                  <div className="bg-green-400 h-2.5 rounded-full" style={{ width: "50%" }}></div>
+            {progress ? (
+              <div className="flex items-center gap-4">
+                <div className="relative w-20 h-28">
+                  <Image
+                    src={progress.cover || "/placeholder.svg"}
+                    alt={progress.title}
+                    fill
+                    className="object-cover rounded-lg border-2 border-orange-200"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-bold text-gray-800">{progress.title}</h4>
+                  <p className="text-sm text-gray-600 mb-2">Page {progress.page}</p>
+                  <Link href={`/book/${progress.id}?page=${progress.page}`}>
+                    <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
+                      Resume
+                    </Button>
+                  </Link>
                 </div>
               </div>
-            </div>
+            ) : (
+              <p className="text-sm text-gray-500">Start reading a book to see your progress here.</p>
+            )}
           </div>
         </div>
 
@@ -96,7 +123,6 @@ export default function HomePage() {
           </Button>
         </Link>
       </main>
-      // Force redeploy
 
       {/* Bottom Navigation */}
       <nav className="sticky bottom-0 w-full bg-white border-t-2 border-orange-100 shadow-lg rounded-t-xl">
