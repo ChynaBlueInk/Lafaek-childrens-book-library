@@ -75,7 +75,7 @@ export default function DownloadsPage() {
                 className="bg-gray-900 rounded-xl border border-gray-700 shadow-md"
               >
                 <div className="flex p-4">
-                  <div className="relative w-20 h-28 flex-shrink-0">
+                  <div className="relative w-28 h-28 flex-shrink-0">
                     <Image
                       src={book.cover || "/placeholder.svg"}
                       alt={book.title}
