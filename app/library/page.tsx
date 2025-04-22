@@ -67,8 +67,8 @@ export default function LibraryPage() {
           {books.map((book) => (
             <Link key={book.id} href={`/book/${book.id}`} className="group">
               <div className="flex flex-col items-center">
-                <div className="relative w-full aspect-[3/4] mb-2 transition-transform group-hover:scale-105 border border-gray-700 rounded-lg overflow-hidden shadow-md">
-                  <Image
+              <div className="relative w-[100%] aspect-square mb-2 transition-transform group-hover:scale-105 border border-gray-700 rounded-lg overflow-hidden shadow-md">
+              <Image
                     src={book.cover || "/placeholder.svg"}
                     alt={book.title}
                     fill

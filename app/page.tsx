@@ -68,7 +68,7 @@ export default function HomePage() {
               <Link
                 key={book.id}
                 href={`/book/${book.id}`}
-                className="relative group aspect-[3/4] overflow-hidden rounded-lg border border-gray-700 shadow-md hover:shadow-xl transition-shadow"
+                className="relative group aspect-square overflow-hidden rounded-lg border border-gray-700 shadow-md hover:shadow-xl transition-shadow"
               >
                 <Image
                   src={book.cover}
@@ -89,7 +89,7 @@ export default function HomePage() {
           <h3 className="text-xl font-bold text-green-400 mb-4">Continue Reading</h3>
           {progress ? (
             <div className="flex items-center gap-4 bg-gray-900 rounded-xl p-4 border border-gray-700">
-              <div className="relative w-20 h-28 shrink-0">
+              <div className="relative w-28 h-28 shrink-0">
                 <Image
                   src={progress.cover || "/placeholder.svg"}
                   alt={progress.title}
