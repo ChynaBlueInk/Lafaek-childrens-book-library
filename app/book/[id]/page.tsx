@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useSwipeable } from "react-swipeable";
+
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "react-pdf/dist/esm/Page/TextLayer.css";
 import {
   ChevronLeft,
   ChevronRight,
@@ -15,9 +18,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { books } from "@/lib/books";
-
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
-import "react-pdf/dist/esm/Page/TextLayer.css";
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
 
@@ -110,27 +110,29 @@ export default function BookPage() {
 
   if (!book) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-black text-white">
-        <h1 className="text-3xl font-bold text-red-500">Book Not Found</h1>
-        <p className="text-gray-400 mt-4">We couldn't find the book you were looking for.</p>
+      <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-orange-50">
+        <h1 className="text-3xl font-bold text-red-600">Book Not Found</h1>
+        <p className="text-gray-700 mt-4">
+          We couldn't find the book you were looking for.
+        </p>
         <Link href="/library">
-          <Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
-            Back to Library
-          </Button>
+          <Button className="mt-6">Back to Library</Button>
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-orange-50 to-yellow-50">
       {/* Header */}
-      <header className="w-full bg-green-700 p-3 shadow-md">
+      <header className="w-full bg-gradient-to-r from-orange-400 via-orange-500 to-orange-400 p-3 shadow-md">
         <div className="container mx-auto flex items-center">
           <Link href="/library" className="text-white">
             <ChevronLeft className="h-6 w-6" />
           </Link>
-          <h1 className="flex-1 text-xl font-bold text-white text-center">{book.title}</h1>
+          <h1 className="flex-1 text-xl font-bold text-white text-center">
+            {book.title}
+          </h1>
           <a
             href={book.pdf}
             download
@@ -140,7 +142,7 @@ export default function BookPage() {
             <Button
               variant="outline"
               size="sm"
-              className="bg-white text-green-700 border-none"
+              className="bg-white text-orange-600 border-none"
             >
               <Download className="h-4 w-4 mr-1" />
               Download
@@ -151,7 +153,7 @@ export default function BookPage() {
 
       {/* Mobile Tip Message */}
       {isMobilePortrait && (
-        <div className="bg-yellow-200 text-black text-center text-sm py-2">
+        <div className="bg-yellow-100 text-yellow-800 text-center text-sm py-2">
           📱 For best viewing, rotate your device to landscape.
         </div>
       )}
@@ -159,26 +161,26 @@ export default function BookPage() {
       {/* Viewer */}
       <main className="flex-1 overflow-y-auto p-4">
         <div
-          className="w-full max-w-5xl mx-auto bg-gray-900 border border-gray-700 rounded-md shadow-md p-4 relative"
+          className="w-full max-w-5xl mx-auto bg-white border-2 border-orange-200 rounded-md shadow-md p-4 relative"
           {...swipeHandlers}
         >
           {currentPage > 1 && (
             <button
               onClick={() => handlePageChange(currentPage - 1)}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-green-100"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-orange-100"
               aria-label="Previous Page"
             >
-              <ChevronLeftCircle className="h-6 w-6 text-green-700" />
+              <ChevronLeftCircle className="h-6 w-6 text-orange-500" />
             </button>
           )}
 
           {currentPage < (numPages || 0) && (
             <button
               onClick={() => handlePageChange(currentPage + 1)}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-green-100"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md hover:bg-orange-100"
               aria-label="Next Page"
             >
-              <ChevronRightCircle className="h-6 w-6 text-green-700" />
+              <ChevronRightCircle className="h-6 w-6 text-orange-500" />
             </button>
           )}
 
@@ -192,24 +194,24 @@ export default function BookPage() {
             />
           </Document>
 
-          <p className="text-center text-sm text-gray-400 mt-4">
+          <p className="text-center text-sm text-gray-500 mt-4">
             Page {currentPage} of {numPages}
           </p>
         </div>
       </main>
 
       {/* Footer Nav */}
-      <footer className="sticky bottom-0 w-full bg-gray-900 border-t border-gray-800 z-50">
+      <nav className="sticky bottom-0 w-full bg-white border-t shadow-md z-50">
         <div className="container mx-auto px-4 py-3 flex justify-center">
           <Link
             href="/library"
-            className="flex items-center text-gray-400 hover:text-white"
+            className="flex items-center text-gray-500 hover:text-orange-600"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-6 w-6" />
             <span className="text-xs ml-1">Back to Library</span>
           </Link>
         </div>
-      </footer>
+      </nav>
     </div>
   );
 }
