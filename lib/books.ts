@@ -25,5 +25,14 @@ export interface Book {
       isFeatured: true,
       lastReadPage: null,
     },
+    {
+      id: 3,
+      title: "Mau Sesta nia Adventura",
+      cover: "/images/BS_LP/mauSesta_nia_adventura.png",  // update if you renamed it
+      pdf: "/book/LP_nia_adventura.pdf",
+      isFeatured: false,
+      lastReadPage: null,
+    },
+    
   ]
   
