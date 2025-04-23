@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Book, Download, Home, Info, Search } from "lucide-react";
@@ -8,6 +9,20 @@ import { Input } from "@/components/ui/input";
 import { books } from "@/lib/books";
 
 export default function LibraryPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const categories = ["Kiik", "Prima", "Komunidade"];
+
+  const filteredBooks = books.filter((book) => {
+    const matchesCategory =
+      selectedCategory === "" || book.category === selectedCategory;
+    const matchesSearch = book.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
       {/* Header */}
@@ -28,28 +43,29 @@ export default function LibraryPage() {
           </div>
 
           {/* Search Bar */}
-          <div className="relative max-w-md mx-auto">
+          <div className="relative max-w-md mx-auto mb-4">
             <Input
               placeholder="Search for books..."
               className="pl-10 pr-4 py-2 rounded-full bg-white text-black border border-green-300 focus:border-green-500"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           </div>
-        </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="flex-1 container mx-auto px-4 py-8">
-        {/* Categories */}
-        <div className="mb-6">
-          <h2 className="text-xl font-bold text-green-400 mb-2">Categories</h2>
-          <div className="flex gap-2 overflow-x-auto pb-2">
-            {["All", "Children", "Magazine", "Video"].map((category) => (
+          {/* Category Filters */}
+          <div className="flex justify-center gap-2 flex-wrap">
+            {categories.map((category) => (
               <Button
                 key={category}
-                variant={category === "All" ? "default" : "outline"}
+                onClick={() =>
+                  setSelectedCategory(
+                    selectedCategory === category ? "" : category
+                  )
+                }
+                variant={selectedCategory === category ? "default" : "outline"}
                 className={`rounded-full ${
-                  category === "All"
+                  selectedCategory === category
                     ? "bg-green-600 text-white"
                     : "bg-gray-800 text-gray-300 border-gray-600 hover:bg-gray-700"
                 }`}
@@ -58,17 +74,31 @@ export default function LibraryPage() {
                 {category}
               </Button>
             ))}
+            <Button
+              onClick={() => {
+                setSelectedCategory("");
+                setSearchTerm("");
+              }}
+              variant="ghost"
+              className="text-sm text-white"
+            >
+              Clear Filters
+            </Button>
           </div>
         </div>
+      </header>
 
-        {/* Books Grid */}
-        <h2 className="text-xl font-bold text-green-400 mb-4">All</h2>
+      {/* Main Content */}
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <h2 className="text-xl font-bold text-green-400 mb-4">
+          {selectedCategory || "All"} Books
+        </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
-          {books.map((book) => (
+          {filteredBooks.map((book) => (
             <Link key={book.id} href={`/book/${book.id}`} className="group">
               <div className="flex flex-col items-center">
-              <div className="relative w-[100%] aspect-square mb-2 transition-transform group-hover:scale-105 border border-gray-700 rounded-lg overflow-hidden shadow-md">
-              <Image
+                <div className="relative w-full aspect-square mb-2 transition-transform group-hover:scale-105 border border-gray-700 rounded-lg overflow-hidden shadow-md">
+                  <Image
                     src={book.cover || "/placeholder.svg"}
                     alt={book.title}
                     fill
