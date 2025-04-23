@@ -73,10 +73,12 @@ export default function AboutPage() {
             making it the best reading app for children.
           </p>
 
-          <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-            <Mail className="mr-2 h-4 w-4" />
-            Contact Support
-          </Button>
+          <Link href="mailto:lafaek@careint.org" passHref>
+            <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+              <Mail className="mr-2 h-4 w-4" />
+              Contact Support
+            </Button>
+          </Link>
         </div>
 
         <div className="text-center text-sm text-gray-500 mt-4">
