@@ -108,7 +108,7 @@ export const books: Book[] = [
     title: "LBK 2023 Edition 2",
     category: "Komunidade",
     cover: "/images/BS_LBK/lbk2023ed2.png", // Add this image to public/images
-    pdf: "/book/komunidade/LBK-2023-Ed02_16.02.2023.pdf",
+    pdf: "/book/komunidade/LBK-2023-Ed02.pdf",
     isFeatured: false,
     lastReadPage: null,
   },
