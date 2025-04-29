@@ -8,7 +8,10 @@ import { Button } from "@/components/ui/button";
 import { books } from "@/lib/books";
 
 export default function HomePage() {
-  const featuredBooks = books.filter((book) => book.isFeatured);
+  // NEW: Latest Books sorted by ID (newest first)
+  const latestBooks = [...books]
+    .sort((a, b) => b.id - a.id)
+    .slice(0, 2);
 
   const [progress, setProgress] = useState<{
     id: number;
@@ -60,58 +63,67 @@ export default function HomePage() {
           </p>
         </section>
 
-        {/* Featured Books */}
+        {/* Latest Added + Continue Reading */}
         <section className="mb-12">
-          <h3 className="text-xl font-bold text-green-400 mb-4">Featured Books</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {featuredBooks.map((book) => (
-              <Link
-                key={book.id}
-                href={`/book/${book.id}`}
-                className="relative group aspect-square overflow-hidden rounded-lg border border-gray-700 shadow-md hover:shadow-xl transition-shadow"
-              >
-                <Image
-                  src={book.cover}
-                  alt={book.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform"
-                />
-                <div className="absolute bottom-0 bg-gradient-to-t from-black/80 to-transparent w-full p-2 text-xs text-white text-center truncate">
-                  {book.title}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Latest Added Books */}
+            <div className="w-full md:w-1/2">
+  <h3 className="text-xl font-bold text-green-400 mb-4">Latest Added</h3>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  {latestBooks.map((book) => (
+      <Link
+        key={book.id}
+        href={`/book/${book.id}`}
+        className="flex flex-col items-center bg-gray-900 rounded-lg border border-gray-700 shadow-md hover:shadow-lg transition overflow-hidden"
+      >
+        <div className="relative w-32 h-40">
+          <Image
+            src={book.cover}
+            alt={book.title}
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="p-2 text-center">
+          <h4 className="text-xs font-semibold text-white truncate">{book.title}</h4>
+          <p className="text-[10px] text-gray-400">{book.category}</p>
+        </div>
+      </Link>
+    ))}
+  </div>
+</div>
 
-        {/* Continue Reading */}
-        <section className="mb-10">
-          <h3 className="text-xl font-bold text-green-400 mb-4">Continue Reading</h3>
-          {progress ? (
-            <div className="flex items-center gap-4 bg-gray-900 rounded-xl p-4 border border-gray-700">
-              <div className="relative w-28 h-28 shrink-0">
-                <Image
-                  src={progress.cover || "/placeholder.svg"}
-                  alt={progress.title}
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-              <div className="flex-1">
-                <h4 className="font-bold text-white">{progress.title}</h4>
-                <p className="text-sm text-gray-400 mb-2">Page {progress.page}</p>
-                <Link href={`/book/${progress.id}?page=${progress.page}`}>
-                  <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
-                    Resume
-                  </Button>
-                </Link>
-              </div>
+
+            {/* Continue Reading */}
+            <div className="w-full md:w-1/2">
+              <h3 className="text-xl font-bold text-green-400 mb-4">Continue Reading</h3>
+              {progress ? (
+                <div className="flex items-center gap-4 bg-gray-900 rounded-xl p-4 border border-gray-700">
+                  <div className="relative w-28 h-28 shrink-0">
+                    <Image
+                      src={progress.cover || "/placeholder.svg"}
+                      alt={progress.title}
+                      fill
+                      className="object-cover rounded-md"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-bold text-white">{progress.title}</h4>
+                    <p className="text-sm text-gray-400 mb-2">Page {progress.page}</p>
+                    <Link href={`/book/${progress.id}?page=${progress.page}`}>
+                      <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white">
+                        Resume
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-sm text-gray-400">
+                  Start reading a book to see your progress here.
+                </p>
+              )}
             </div>
-          ) : (
-            <p className="text-sm text-gray-400">
-              Start reading a book to see your progress here.
-            </p>
-          )}
+          </div>
         </section>
 
         {/* Action Buttons */}

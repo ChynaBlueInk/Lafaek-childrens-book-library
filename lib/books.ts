@@ -102,5 +102,15 @@ export const books: Book[] = [
     pdf: "/book/LP/LP_salva_lenuk.pdf",
     isFeatured: false,
     lastReadPage: null,
-  }
+  },
+  {
+    id: 11, // or the next available number
+    title: "LBK 2023 Edition 2",
+    category: "Komunidade",
+    cover: "/images/BS_LBK/lbk2023ed2.png", // Add this image to public/images
+    pdf: "/book/komunidade/LBK-2023-Ed02_16.02.2023.pdf",
+    isFeatured: false,
+    lastReadPage: null,
+  },
+  
 ];
