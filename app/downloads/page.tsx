@@ -109,9 +109,10 @@ export default function DownloadsPage() {
         ) : (
           <div className="text-center py-12">
             <Download className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-            <h2 className="text-xl font-bold text-gray-700 mb-2">
-              No Downloaded Books
-            </h2>
+            <h2 className="text-xl font-bold text-red-700 mb-2">
+  No books saved yet — try downloading one!
+</h2>
+
             <p className="text-gray-500 mb-6">
               You haven’t downloaded any books yet.
             </p>
