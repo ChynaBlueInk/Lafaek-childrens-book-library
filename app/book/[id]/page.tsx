@@ -110,9 +110,9 @@ export default function BookPage() {
 
   if (!book) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-black text-white">
+      <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-[#f0fdf4] text-black">
         <h1 className="text-3xl font-bold text-red-500">Book Not Found</h1>
-        <p className="text-gray-400 mt-4">We couldn't find the book you were looking for.</p>
+        <p className="text-gray-600 mt-4">We couldn't find the book you were looking for.</p>
         <Link href="/library">
           <Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
             Back to Library
@@ -123,9 +123,9 @@ export default function BookPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
+    <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
       {/* Header */}
-      <header className="w-full bg-green-700 p-3 shadow-md">
+      <header className="w-full bg-[#6cc04a] p-3 shadow-md">
         <div className="container mx-auto flex items-center">
           <Link href="/library" className="text-white">
             <ChevronLeft className="h-6 w-6" />
@@ -151,7 +151,7 @@ export default function BookPage() {
 
       {/* Mobile Tip Message */}
       {isMobilePortrait && (
-        <div className="bg-yellow-200 text-black text-center text-sm py-2">
+        <div className="bg-yellow-100 text-black text-center text-sm py-2">
           📱 For best viewing, rotate your device to landscape.
         </div>
       )}
@@ -159,7 +159,7 @@ export default function BookPage() {
       {/* Viewer */}
       <main className="flex-1 overflow-y-auto p-4">
         <div
-          className="w-full max-w-5xl mx-auto bg-gray-900 border border-gray-700 rounded-md shadow-md p-4 relative"
+          className="w-full max-w-5xl mx-auto bg-white border border-gray-300 rounded-md shadow-md p-4 relative"
           {...swipeHandlers}
         >
           {currentPage > 1 && (
@@ -192,18 +192,18 @@ export default function BookPage() {
             />
           </Document>
 
-          <p className="text-center text-sm text-gray-400 mt-4">
+          <p className="text-center text-sm text-gray-600 mt-4">
             Page {currentPage} of {numPages}
           </p>
         </div>
       </main>
 
       {/* Footer Nav */}
-      <footer className="sticky bottom-0 w-full bg-gray-900 border-t border-gray-800 z-50">
+      <footer className="sticky bottom-0 w-full bg-white border-t border-gray-300 z-50">
         <div className="container mx-auto px-4 py-3 flex justify-center">
           <Link
             href="/library"
-            className="flex items-center text-gray-400 hover:text-white"
+            className="flex items-center text-gray-700 hover:text-black"
           >
             <ChevronLeft className="h-5 w-5" />
             <span className="text-xs ml-1">Back to Library</span>

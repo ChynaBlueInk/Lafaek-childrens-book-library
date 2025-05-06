@@ -1,22 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import HTMLFlipBook from "react-pageflip";
 import { Button } from "@/components/ui/button";
 
-export default function DemoBookPage() {
-  const [page, setPage] = useState(1);
-  const totalPages = 4;
+interface PageProps {
+  number: number;
+}
 
-  const handleSwipe = (direction: "left" | "right") => {
-    if (direction === "left" && page < totalPages) setPage(page + 1);
-    if (direction === "right" && page > 1) setPage(page - 1);
-  };
+const Page = React.forwardRef<HTMLDivElement, PageProps>(({ number }, ref) => (
+  <div ref={ref} className="h-full w-full bg-white p-4 rounded-xl">
+    <div className="relative w-full h-full">
+      <Image
+        src={`/images/anim${number}.png`}
+        alt={`Page ${number}`}
+        fill
+        className="object-contain rounded-xl"
+      />
+    </div>
+  </div>
+));
+
+Page.displayName = "Page";
+
+export default function DemoBookPage() {
+  const bookRef = useRef<any>(null);
 
   return (
     <div className="min-h-screen bg-[#f0fdf4] flex flex-col items-center justify-center text-black">
-      {/* Back to Home */}
+      {/* Back Button */}
       <div className="absolute top-4 left-4">
         <Link href="/">
           <Button className="bg-[#6cc04a] text-white hover:bg-green-700 rounded-full px-4">
@@ -26,47 +40,46 @@ export default function DemoBookPage() {
       </div>
 
       {/* Title */}
-      <h1 className="text-3xl font-bold text-[#6cc04a] mb-4">Full Page Animated Book Demo</h1>
+      <h1 className="text-3xl font-bold text-[#6cc04a] mb-4">
+        Full Page Animated Book Demo
+      </h1>
       <p className="text-gray-600 mb-6 text-center px-4 max-w-xl">
-        Swipe on mobile or click the buttons below to navigate through the animated book preview.
+        Swipe on mobile or tap the corners to turn the pages.
       </p>
 
-      {/* Book Viewer */}
-      <div
-        className="relative bg-white rounded-xl shadow-lg border max-w-3xl w-full p-6 touch-pan-x"
-        onTouchStart={(e) => (window as any).startX = e.touches[0].clientX}
-        onTouchEnd={(e) => {
-          const diff = e.changedTouches[0].clientX - (window as any).startX;
-          if (diff > 50) handleSwipe("right");
-          else if (diff < -50) handleSwipe("left");
-        }}
-      >
-        <Image
-          src={`/images/anim${page}.png`}
-          alt={`Book Page ${page}`}
-          width={1000}
-          height={700}
-          className="rounded-md mx-auto object-contain"
-        />
-
-        {/* Nav Buttons */}
-        <div className="mt-6 flex justify-between items-center">
-          <Button
-            disabled={page === 1}
-            onClick={() => setPage((p) => Math.max(p - 1, 1))}
-            className="bg-gray-200 hover:bg-gray-300 text-black"
-          >
-            ⬅ Back
-          </Button>
-          <span className="text-sm text-gray-500">Page {page} of {totalPages}</span>
-          <Button
-            disabled={page === totalPages}
-            onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
-            className="bg-gray-200 hover:bg-gray-300 text-black"
-          >
-            Next ➡
-          </Button>
-        </div>
+      {/* Flipbook Viewer */}
+      <div className="w-full max-w-xs sm:max-w-md md:max-w-lg shadow-xl">
+        <HTMLFlipBook
+          width={300}
+          height={400}
+          size="stretch"
+          minWidth={300}
+          maxWidth={600}
+          minHeight={400}
+          maxHeight={800}
+          drawShadow={true}
+          showCover={true}
+          mobileScrollSupport={true}
+          className="flipbook rounded-lg"
+          startPage={0}
+          flippingTime={600}
+          usePortrait={true}
+          startZIndex={0}
+          autoSize={true}
+          maxShadowOpacity={0.5}
+          showPageCorners={true}
+          disableFlipByClick={false}
+          swipeDistance={30}
+          clickEventForward={true}
+          useMouseEvents={true}
+          ref={bookRef}
+          style={{}} // ✅ Required to satisfy IProps type
+        >
+          <Page number={1} />
+          <Page number={2} />
+          <Page number={3} />
+          <Page number={4} />
+        </HTMLFlipBook>
       </div>
     </div>
   );

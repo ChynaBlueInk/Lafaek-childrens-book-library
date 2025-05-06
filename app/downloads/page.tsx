@@ -37,30 +37,24 @@ export default function DownloadsPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
+    <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
       {/* Header */}
-      <header className="w-full bg-green-700 p-4 rounded-b-3xl shadow-md">
-        <div className="container mx-auto">
-          <div className="flex items-center justify-center">
-            <div className="relative h-16 w-16 mr-2">
-              <Image
-                src="/images/lafaek-logo.png"
-                alt="Lafaek Logo"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <h1 className="text-center text-2xl font-bold text-white drop-shadow-md">
-              Downloaded Books
-            </h1>
-          </div>
+      <header className="w-full bg-[#6cc04a]">
+        <div className="relative w-full h-36 sm:h-48 md:h-56 lg:h-64">
+          <Image
+            src="/images/lafaekbanner.png"
+            alt="Lafaek Banner"
+            fill
+            className="object-contain object-center"
+            priority
+          />
         </div>
       </header>
 
       {/* Info */}
       <main className="flex-1 container mx-auto px-4 py-8">
-        <div className="bg-gray-900 rounded-xl p-4 border border-gray-700 shadow-md mb-6">
-          <p className="text-gray-300">
+        <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-md mb-6">
+          <p className="text-gray-700 text-sm">
             Books you download will be available to read even when you don’t
             have an internet connection.
           </p>
@@ -72,7 +66,7 @@ export default function DownloadsPage() {
             {downloadedBooks.map((book) => (
               <div
                 key={book.id}
-                className="bg-gray-900 rounded-xl border border-gray-700 shadow-md"
+                className="bg-white rounded-xl border border-gray-200 shadow-sm"
               >
                 <div className="flex p-4">
                   <div className="relative w-28 h-28 flex-shrink-0">
@@ -80,12 +74,12 @@ export default function DownloadsPage() {
                       src={book.cover || "/placeholder.svg"}
                       alt={book.title}
                       fill
-                      className="object-cover rounded-md border border-gray-600"
+                      className="object-cover rounded-md border border-gray-300"
                     />
                   </div>
                   <div className="ml-4 flex-1">
-                    <h3 className="font-bold text-white">{book.title}</h3>
-                    <p className="text-xs text-gray-400 mt-1">
+                    <h3 className="font-bold text-black">{book.title}</h3>
+                    <p className="text-xs text-gray-500 mt-1">
                       Downloaded:{" "}
                       {new Date(book.downloadDate).toLocaleDateString()}
                     </p>
@@ -101,7 +95,7 @@ export default function DownloadsPage() {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="text-red-400 border-red-300 hover:bg-red-900/20"
+                        className="text-red-500 border-red-300 hover:bg-red-100"
                         onClick={() => handleDelete(book.id)}
                       >
                         <Trash2 className="h-4 w-4" />
@@ -114,11 +108,11 @@ export default function DownloadsPage() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <Download className="h-12 w-12 mx-auto text-gray-500 mb-4" />
-            <h2 className="text-xl font-bold text-gray-200 mb-2">
+            <Download className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+            <h2 className="text-xl font-bold text-gray-700 mb-2">
               No Downloaded Books
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="text-gray-500 mb-6">
               You haven’t downloaded any books yet.
             </p>
             <Link href="/library">
@@ -131,22 +125,22 @@ export default function DownloadsPage() {
       </main>
 
       {/* Bottom Navigation */}
-      <nav className="sticky bottom-0 w-full bg-gray-900 border-t border-gray-800 z-50">
+      <nav className="sticky bottom-0 w-full bg-white border-t border-gray-300 z-50">
         <div className="container mx-auto px-4">
-          <div className="flex justify-around py-3 text-gray-400 text-sm">
-            <Link href="/" className="flex flex-col items-center hover:text-white">
+          <div className="flex justify-around py-3 text-gray-700 text-sm">
+            <Link href="/" className="flex flex-col items-center hover:text-black">
               <Home className="h-5 w-5" />
               Home
             </Link>
-            <Link href="/library" className="flex flex-col items-center hover:text-white">
+            <Link href="/library" className="flex flex-col items-center hover:text-black">
               <Book className="h-5 w-5" />
               Library
             </Link>
-            <Link href="/downloads" className="flex flex-col items-center text-green-400">
+            <Link href="/downloads" className="flex flex-col items-center text-[#6cc04a] font-semibold">
               <Download className="h-5 w-5" />
               Downloads
             </Link>
-            <Link href="/about" className="flex flex-col items-center hover:text-white">
+            <Link href="/about" className="flex flex-col items-center hover:text-black">
               <Info className="h-5 w-5" />
               About
             </Link>

@@ -6,11 +6,10 @@ import Image from "next/image";
 import { Book, Download, Home, Info, Gamepad2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { books } from "@/lib/books";
+import AnimatedPreviewBook from "@/components/AnimatedPreviewBook";
 
 export default function HomePage() {
-  const latestBooks = [...books]
-    .sort((a, b) => b.id - a.id)
-    .slice(0, 2);
+  const latestBooks = [...books].sort((a, b) => b.id - a.id).slice(0, 2);
 
   const [progress, setProgress] = useState<{
     id: number;
@@ -18,9 +17,6 @@ export default function HomePage() {
     cover: string;
     page: number;
   } | null>(null);
-
-  const [page, setPage] = useState(1);
-  const totalPages = 4;
 
   useEffect(() => {
     const saved = localStorage.getItem("continueReading");
@@ -32,11 +28,6 @@ export default function HomePage() {
       }
     }
   }, []);
-
-  const handleSwipe = (direction: "left" | "right") => {
-    if (direction === "left" && page < totalPages) setPage(page + 1);
-    if (direction === "right" && page > 1) setPage(page - 1);
-  };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
@@ -152,46 +143,13 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Swipe-style Animated Book Preview */}
-        <section className="text-center">
+        {/* Animated Flipbook */}
+        <section className="text-center mt-12">
           <h3 className="text-2xl font-bold text-[#6cc04a] mb-4">Animated Book Preview</h3>
-          <p className="text-gray-600 mb-6">Swipe or click to explore animated book style pages</p>
-
-          <div
-            className="bg-white rounded-xl shadow-md border max-w-md mx-auto p-4 touch-pan-x"
-            onTouchStart={(e) => (window as any).startX = e.touches[0].clientX}
-            onTouchEnd={(e) => {
-              const diff = e.changedTouches[0].clientX - (window as any).startX;
-              if (diff > 50) handleSwipe("right");
-              else if (diff < -50) handleSwipe("left");
-            }}
-          >
-            <Image
-              src={`/images/anim${page}.png`}
-              alt={`Animation Page ${page}`}
-              width={500}
-              height={300}
-              className="rounded-md object-contain mx-auto"
-            />
-
-            <div className="mt-4 flex justify-between items-center">
-              <Button
-                disabled={page === 1}
-                onClick={() => setPage((p) => Math.max(p - 1, 1))}
-                className="bg-gray-200 hover:bg-gray-300 text-black"
-              >
-                ⬅ Back
-              </Button>
-              <span className="text-sm text-gray-500">Page {page} of {totalPages}</span>
-              <Button
-                disabled={page === totalPages}
-                onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
-                className="bg-gray-200 hover:bg-gray-300 text-black"
-              >
-                Next ➡
-              </Button>
-            </div>
-          </div>
+          <p className="text-gray-600 mb-6">
+            Flip through this preview book using swipe or click! Let us know what style you like best.
+          </p>
+          <AnimatedPreviewBook />
         </section>
       </main>
 
