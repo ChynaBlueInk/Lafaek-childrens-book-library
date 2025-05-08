@@ -1,16 +1,15 @@
-// lib/books.ts
 export interface Book {
   id: number;
   title: string;
   category: string;
   cover: string;
   pdf: string;
+  imagesFolder?: string;
   isFeatured?: boolean;
   lastReadPage?: number | null;
 }
 
 export const books: Book[] = [
-  // Kiik Books
   {
     id: 1,
     title: "LK Bee Maran",
@@ -56,8 +55,6 @@ export const books: Book[] = [
     isFeatured: false,
     lastReadPage: null,
   },
-
-  // Prima Books
   {
     id: 6,
     title: "LP Kanalizasaun",
@@ -104,13 +101,15 @@ export const books: Book[] = [
     lastReadPage: null,
   },
   {
-    id: 11, // or the next available number
+    id: 11,
     title: "LBK 2023 Edition 2",
     category: "Komunidade",
-    cover: "/images/BS_LBK/lbk2023ed2.png", // Add this image to public/images
+    cover: "/images/BS_LBK/lbk2023ed2.png",
     pdf: "/book/komunidade/LBK-2023-Ed02.pdf",
+    imagesFolder: "/images/BS_LBK/LBKEd22023",
     isFeatured: false,
     lastReadPage: null,
   },
+  
   
 ];

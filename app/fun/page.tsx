@@ -16,40 +16,48 @@ export default function HomePage() {
       id: "games",
       icon: <Gamepad2 size={32} />,
       label: "Games",
-      color: "#1a472a", // Dark green
+      color: "#ffcc00", // Sunshine Yellow
       path: "/fun/games",
     },
     {
       id: "drawing",
       icon: <Palette size={32} />,
       label: "Drawing",
-      color: "#2f4f4f", // Dark slate gray
+      color: "#66ccff", // Sky Blue
       path: "/fun/drawing",
     },
     {
       id: "dragdrop",
       icon: <PuzzleIcon size={32} />,
       label: "Drag & Drop",
-      color: "#3b3b3b", // Dim gray
+      color: "#ff99cc", // Candy Pink
       path: "/fun/dragdrop",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center p-4">
+<div className="min-h-screen bg-[#f0f8ff] flex flex-col items-center justify-center p-4 relative">
+  {/* Back button */}
+  <div className="absolute top-4 left-4">
+    <Link href="/" passHref>
+      <Button variant="ghost" className="text-[#444] hover:text-[#ff6f61]">
+        ← Back
+      </Button>
+    </Link>
+  </div>
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
         className="mb-8"
       >
-        <h1 className="text-4xl md:text-5xl font-bold text-center text-green-500 mb-2">
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-[#ff6f61] mb-2">
           Kid's Fun Zone
         </h1>
         <motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
-          className="text-xl text-center text-gray-300"
+          className="text-xl text-center text-[#444444]"
         >
           Let's play and learn!
         </motion.div>
@@ -107,7 +115,8 @@ export default function HomePage() {
             {Array.from({ length: 5 }).map((_, i) => (
               <motion.div
                 key={i}
-                className="w-4 h-4 rounded-full bg-green-500"
+                className="w-4 h-4 rounded-full"
+                style={{ backgroundColor: "#ffcc00" }}
                 animate={{ y: [0, -15, 0] }}
                 transition={{
                   repeat: Number.POSITIVE_INFINITY,

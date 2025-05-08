@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
-import { Document, Page, pdfjs } from "react-pdf";
+import { Document, Page as PDFPage, pdfjs } from "react-pdf";
+import HTMLFlipBook from "react-pageflip";
+import Image from "next/image";
 import { useSwipeable } from "react-swipeable";
 import {
   ChevronLeft,
-  ChevronRight,
   ChevronRightCircle,
   ChevronLeftCircle,
   Download,
@@ -26,8 +27,8 @@ export default function BookPage() {
   const params = useParams();
   const searchParams = useSearchParams();
 
-  const rawId = (params as { id: string })?.id;
-  const bookId = rawId ? Number(rawId) : null;
+  const rawId = params?.id;
+  const bookId = rawId ? parseInt(rawId as string, 10) : null;
   const book = books.find((b) => b.id === bookId);
 
   const [numPages, setNumPages] = useState<number | null>(null);
@@ -39,6 +40,9 @@ export default function BookPage() {
     width: 0,
     height: 0,
   });
+
+  const bookRef = useRef<any>(null);
+  const flipbookPages = 24;
 
   const handlePageLoadSuccess = (page: any) => {
     const viewport = page.getViewport({ scale: 1 });
@@ -52,7 +56,6 @@ export default function BookPage() {
 
   const handleDownload = () => {
     if (!book) return;
-
     const stored = localStorage.getItem("downloads");
     let downloads = stored ? JSON.parse(stored) : [];
 
@@ -106,13 +109,12 @@ export default function BookPage() {
     typeof window !== "undefined" &&
     window.innerWidth < 768 &&
     window.innerHeight > window.innerWidth;
-  const isPortrait = pageSize.height > pageSize.width;
 
   if (!book) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-[#f0fdf4] text-black">
         <h1 className="text-3xl font-bold text-red-500">Book Not Found</h1>
-        <p className="text-gray-600 mt-4">We couldn't find the book you were looking for.</p>
+        <p className="text-gray-600 mt-4">This book ID doesn't exist.</p>
         <Link href="/library">
           <Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
             Back to Library
@@ -122,26 +124,73 @@ export default function BookPage() {
     );
   }
 
+  // ✅ Flipbook for Book 11
+  if (book.id === 11 && book.imagesFolder) {
+    const Page = ({ number }: { number: number }) => {
+      const padded = number.toString().padStart(2, "0");
+      return (
+        <div className="w-full h-full bg-white">
+          <div className="relative w-full h-full">
+            <Image
+              src={`${book.imagesFolder}/LBK-2023-Ed02-${padded}.png`}
+              alt={`Page ${number}`}
+              fill
+              className="object-contain"
+            />
+          </div>
+        </div>
+      );
+    };
+
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#f0fdf4] text-black py-6 px-2">
+        <h1 className="text-xl font-bold mb-4 text-center">{book.title}</h1>
+
+        <HTMLFlipBook
+          ref={bookRef}
+          width={400}
+          height={550}
+          size="stretch"
+          minWidth={300}
+          maxWidth={1000}
+          minHeight={400}
+          maxHeight={1536}
+          showCover={false}
+          mobileScrollSupport={true}
+          drawShadow={true}
+          startPage={0}
+          flippingTime={600}
+          usePortrait={true}
+          autoSize={true}
+          startZIndex={0}
+          maxShadowOpacity={0.5}
+          clickEventForward={true}
+          useMouseEvents={true}
+          swipeDistance={30}
+          showPageCorners={true}
+          disableFlipByClick={false}
+          className="shadow-lg rounded-lg"
+          style={{ margin: "0 auto" }}
+        >
+          {Array.from({ length: flipbookPages }, (_, i) => (
+            <Page key={i + 1} number={i + 1} />
+          ))}
+        </HTMLFlipBook>
+      </div>
+    );
+  }
+
+  // ✅ Default PDF Viewer
   return (
     <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
-      {/* Header */}
       <header className="w-full bg-[#6cc04a] p-3 shadow-md">
         <div className="container mx-auto flex items-center">
           <Link href="/library" className="text-white">
             <ChevronLeft className="h-6 w-6" />
           </Link>
           <h1 className="flex-1 text-xl font-bold text-white text-center">{book.title}</h1>
-          <a
-            href={book.pdf}
-            download
-            onClick={handleDownload}
-            className="ml-auto"
-          >
-            <Button
-              variant="outline"
-              size="sm"
-              className="bg-white text-green-700 border-none"
-            >
+          <a href={book.pdf} download onClick={handleDownload} className="ml-auto">
+            <Button variant="outline" size="sm" className="bg-white text-green-700 border-none">
               <Download className="h-4 w-4 mr-1" />
               Download
             </Button>
@@ -149,14 +198,12 @@ export default function BookPage() {
         </div>
       </header>
 
-      {/* Mobile Tip Message */}
       {isMobilePortrait && (
         <div className="bg-yellow-100 text-black text-center text-sm py-2">
           📱 For best viewing, rotate your device to landscape.
         </div>
       )}
 
-      {/* Viewer */}
       <main className="flex-1 overflow-y-auto p-4">
         <div
           className="w-full max-w-5xl mx-auto bg-white border border-gray-300 rounded-md shadow-md p-4 relative"
@@ -183,7 +230,7 @@ export default function BookPage() {
           )}
 
           <Document file={book.pdf} onLoadSuccess={({ numPages }) => setNumPages(numPages)}>
-            <Page
+            <PDFPage
               pageNumber={currentPage}
               scale={scale}
               onLoadSuccess={handlePageLoadSuccess}
@@ -197,19 +244,6 @@ export default function BookPage() {
           </p>
         </div>
       </main>
-
-      {/* Footer Nav */}
-      <footer className="sticky bottom-0 w-full bg-white border-t border-gray-300 z-50">
-        <div className="container mx-auto px-4 py-3 flex justify-center">
-          <Link
-            href="/library"
-            className="flex items-center text-gray-700 hover:text-black"
-          >
-            <ChevronLeft className="h-5 w-5" />
-            <span className="text-xs ml-1">Back to Library</span>
-          </Link>
-        </div>
-      </footer>
     </div>
   );
 }
