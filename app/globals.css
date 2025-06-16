@@ -67,11 +67,10 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+  :root {
+    --banner: 146 34% 25%; /* dark green #2a513e */
+    --page-bg: 0 0% 100%;  /* white */
   }
 }
+
 

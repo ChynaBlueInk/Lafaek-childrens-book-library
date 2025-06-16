@@ -7,6 +7,8 @@ export interface Book {
   imagesFolder?: string;
   isFeatured?: boolean;
   lastReadPage?: number | null;
+  likes: number;
+  downloads: number;
 }
 
 export const books: Book[] = [
@@ -18,6 +20,8 @@ export const books: Book[] = [
     pdf: "/book/LK/LK_bee_maran.pdf",
     isFeatured: true,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 2,
@@ -27,6 +31,8 @@ export const books: Book[] = [
     pdf: "/book/LK/LK_hamoos_tasi.pdf",
     isFeatured: true,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 3,
@@ -36,6 +42,8 @@ export const books: Book[] = [
     pdf: "/book/LK/LK_kafe_laku.pdf",
     isFeatured: false,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 4,
@@ -45,6 +53,8 @@ export const books: Book[] = [
     pdf: "/book/LK/LK_kuidadu_bee.pdf",
     isFeatured: false,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 5,
@@ -54,6 +64,8 @@ export const books: Book[] = [
     pdf: "/book/LK/LK_tradisaun_oioin.pdf",
     isFeatured: false,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 6,
@@ -63,6 +75,8 @@ export const books: Book[] = [
     pdf: "/book/LP/LP_kanalizasaun.pdf",
     isFeatured: false,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 7,
@@ -72,6 +86,8 @@ export const books: Book[] = [
     pdf: "/book/LP/LP_adventura.pdf",
     isFeatured: false,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 8,
@@ -81,6 +97,8 @@ export const books: Book[] = [
     pdf: "/book/LP/LP_nehan.pdf",
     isFeatured: false,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 9,
@@ -90,6 +108,8 @@ export const books: Book[] = [
     pdf: "/book/LP/LP_panel_solar.pdf",
     isFeatured: false,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 10,
@@ -99,6 +119,8 @@ export const books: Book[] = [
     pdf: "/book/LP/LP_salva_lenuk.pdf",
     isFeatured: false,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
   {
     id: 11,
@@ -109,7 +131,7 @@ export const books: Book[] = [
     imagesFolder: "/images/BS_LBK/LBKEd22023",
     isFeatured: false,
     lastReadPage: null,
+    likes: 0,
+    downloads: 0,
   },
-  
-  
 ];

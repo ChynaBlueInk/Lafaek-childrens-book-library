@@ -16,11 +16,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
-      </body>
+     <body>
+  <div className="min-h-screen bg-[hsl(var(--page-bg))]">
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+      {children}
+    </ThemeProvider>
+  </div>
+</body>
+
     </html>
   )
 }

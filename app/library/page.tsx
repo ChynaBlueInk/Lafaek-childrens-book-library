@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Book, Download, Home, Info, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { books } from "@/lib/books";
+import { books as bookData } from "@/lib/books";
+import BookCard from "@/components/BookCard1"; // ✅ NEW import
 
 export default function LibraryPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [books, setBooks] = useState(bookData);
 
   const categories = ["Kiik", "Prima", "Komunidade"];
 
@@ -91,22 +93,16 @@ export default function LibraryPage() {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
           {filteredBooks.map((book) => (
-            <Link key={book.id} href={`/book/${book.id}`} className="group">
-              <div className="flex flex-col items-center">
-                <div className="relative w-full aspect-square mb-2 transition-transform group-hover:scale-105 border border-gray-200 rounded-lg overflow-hidden shadow-sm bg-white">
-                  <Image
-                    src={book.cover || "/placeholder.svg"}
-                    alt={book.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
-                  />
-                </div>
-                <span className="text-sm text-center text-gray-800 font-medium truncate w-full">
-                  {book.title}
-                </span>
-              </div>
-            </Link>
+            <BookCard
+              key={book.id}
+              book={{
+                title: book.title,
+                description: "Enjoy reading this book!",
+                coverImage: book.cover,
+                ageRange: book.category,
+                premium: false,
+              }}
+            />
           ))}
         </div>
       </main>
@@ -115,19 +111,31 @@ export default function LibraryPage() {
       <nav className="sticky bottom-0 w-full bg-white border-t border-gray-300 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-around py-3 text-gray-700 text-sm">
-            <Link href="/" className="flex flex-col items-center hover:text-black">
+            <Link
+              href="/"
+              className="flex flex-col items-center hover:text-black"
+            >
               <Home className="h-5 w-5" />
               Home
             </Link>
-            <Link href="/library" className="flex flex-col items-center text-[#6cc04a] font-semibold">
+            <Link
+              href="/library"
+              className="flex flex-col items-center text-[#6cc04a] font-semibold"
+            >
               <Book className="h-5 w-5" />
               Library
             </Link>
-            <Link href="/downloads" className="flex flex-col items-center hover:text-black">
+            <Link
+              href="/downloads"
+              className="flex flex-col items-center hover:text-black"
+            >
               <Download className="h-5 w-5" />
               Downloads
             </Link>
-            <Link href="/about" className="flex flex-col items-center hover:text-black">
+            <Link
+              href="/about"
+              className="flex flex-col items-center hover:text-black"
+            >
               <Info className="h-5 w-5" />
               About
             </Link>
