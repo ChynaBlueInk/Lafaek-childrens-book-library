@@ -7,7 +7,7 @@ import { Book, Download, Home, Info, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { books as bookData } from "@/lib/books";
-import BookCard from "@/components/BookCard1"; // ✅ NEW import
+import BookCard from "@/components/BookCard1"; // Make sure filename matches exactly
 
 export default function LibraryPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -96,11 +96,14 @@ export default function LibraryPage() {
             <BookCard
               key={book.id}
               book={{
+                id: book.id,
                 title: book.title,
                 description: "Enjoy reading this book!",
                 coverImage: book.cover,
                 ageRange: book.category,
                 premium: false,
+                pdf: book.pdf,
+                imagesFolder: book.imagesFolder,
               }}
             />
           ))}

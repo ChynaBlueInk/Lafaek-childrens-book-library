@@ -5,11 +5,14 @@ import BookModal from "@/components/BookModal";
 
 interface BookProps {
   book: {
+    id: number;
     title: string;
     description: string;
     coverImage: string;
     ageRange: string;
     premium: boolean;
+    pdf?: string;
+    imagesFolder?: string;
   };
 }
 
@@ -28,7 +31,18 @@ export default function BookCard({ book }: BookProps) {
           <p className="text-xs text-muted-foreground">{book.ageRange}</p>
         </div>
       </div>
-      {open && <BookModal book={book} onClose={() => setOpen(false)} />}
+
+      {open && (
+        <BookModal
+          book={{
+            ...book,
+            id: book.id,
+            pdf: book.pdf,
+            imagesFolder: book.imagesFolder,
+          }}
+          onClose={() => setOpen(false)}
+        />
+      )}
     </>
   );
 }
