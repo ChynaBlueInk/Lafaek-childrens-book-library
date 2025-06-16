@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
-import "./globals.css?v=2";
+import "./globals.css?v=3";
 
 export const metadata: Metadata = {
   title: "Lafaek Children's Library",
