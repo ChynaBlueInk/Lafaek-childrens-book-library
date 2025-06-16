@@ -9,7 +9,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
       {/* Header */}
-      <header className="w-full bg-[#6cc04a]">
+      <header className="w-full bg-[#2a513e]">
         <div className="relative w-full h-36 sm:h-48 md:h-56 lg:h-64">
           <Image
             src="/images/lafaekbanner.png"
@@ -36,7 +36,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <h2 className="text-xl font-bold text-[#6cc04a] mb-4 text-center">
+          <h2 className="text-xl font-bold text-[#2a513e] mb-4 text-center">
             Our Mission
           </h2>
 
@@ -57,13 +57,13 @@ export default function AboutPage() {
 
         {/* Contact Section */}
         <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-200 max-w-md w-full mb-8">
-          <h2 className="text-xl font-bold text-[#6cc04a] mb-4">Contact Us</h2>
+          <h2 className="text-xl font-bold text-[#2a513e] mb-4">Contact Us</h2>
           <p className="text-gray-600 mb-6 text-sm">
             Have questions, suggestions, or feedback? We'd love to hear from you! Our team is dedicated to improving Lafaek Learning Media and making it the best reading app for children.
           </p>
 
           <Link href="mailto:lafaek@careint.org" passHref>
-            <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+            <Button className="w-full bg-green-700 hover:bg-green-800 text-white">
               <Mail className="mr-2 h-4 w-4" />
               Contact Support
             </Button>
@@ -92,7 +92,7 @@ export default function AboutPage() {
               <Download className="h-5 w-5" />
               Downloads
             </Link>
-            <Link href="/about" className="flex flex-col items-center text-[#6cc04a] font-semibold">
+            <Link href="/about" className="flex flex-col items-center text-[#2a513e] font-semibold">
               <Info className="h-5 w-5" />
               About
             </Link>

@@ -116,7 +116,7 @@ export default function BookPage() {
         <h1 className="text-3xl font-bold text-red-500">Book Not Found</h1>
         <p className="text-gray-600 mt-4">This book ID doesn't exist.</p>
         <Link href="/library">
-          <Button className="mt-6 bg-green-600 hover:bg-green-700 text-white">
+          <Button className="mt-6 bg-green-700 hover:bg-green-800 text-white">
             Back to Library
           </Button>
         </Link>
@@ -183,7 +183,7 @@ export default function BookPage() {
   // ✅ Default PDF Viewer
   return (
     <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
-      <header className="w-full bg-[#6cc04a] p-3 shadow-md">
+      <header className="w-full bg-[#2a513e] p-3 shadow-md">
         <div className="container mx-auto flex items-center">
           <Link href="/library" className="text-white">
             <ChevronLeft className="h-6 w-6" />

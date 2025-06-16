@@ -32,7 +32,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
       {/* Header */}
-      <header className="w-full bg-[#6cc04a]">
+      <header className="w-full bg-[#2a513e]">
         <div className="relative w-full h-36 sm:h-48 md:h-56 lg:h-64">
           <Image
             src="/images/lafaekbanner.png"
@@ -56,7 +56,7 @@ export default function HomePage() {
               className="object-contain"
             />
             <div>
-              <h2 className="text-3xl font-bold text-[#6cc04a] mb-2">
+              <h2 className="text-3xl font-bold text-[#2a513e] mb-2">
                 Welcome to your reading adventure!
               </h2>
               <p className="text-lg text-gray-700">
@@ -70,7 +70,7 @@ export default function HomePage() {
         <section className="mb-12">
           <div className="flex flex-col md:flex-row gap-8">
             <div className="w-full md:w-1/2">
-              <h3 className="text-xl font-bold text-[#6cc04a] mb-4">Latest Added</h3>
+              <h3 className="text-xl font-bold text-[#2a513e] mb-4">Latest Added</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {latestBooks.map((book) => (
                   <Link
@@ -96,7 +96,7 @@ export default function HomePage() {
             </div>
 
             <div className="w-full md:w-1/2">
-              <h3 className="text-xl font-bold text-[#6cc04a] mb-4">Continue Reading</h3>
+              <h3 className="text-xl font-bold text-[#2a513e] mb-4">Continue Reading</h3>
               {progress ? (
                 <div className="flex items-center gap-4 bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
                   <div className="relative w-28 h-28 shrink-0">
@@ -111,7 +111,7 @@ export default function HomePage() {
                     <h4 className="font-bold text-black text-lg">{progress.title}</h4>
                     <p className="text-sm text-gray-500 mb-2">Page {progress.page}</p>
                     <Link href={`/book/${progress.id}?page=${progress.page}`}>
-                      <Button size="sm" className="bg-green-600 hover:bg-green-700 text-white rounded-full">
+                      <Button size="sm" className="bg-green-700 hover:bg-green-800 text-white rounded-full">
                         Resume
                       </Button>
                     </Link>
@@ -145,7 +145,7 @@ export default function HomePage() {
 
         {/* Animated Flipbook */}
         <section className="text-center mt-12">
-          <h3 className="text-2xl font-bold text-[#6cc04a] mb-4">Animated Book Preview</h3>
+          <h3 className="text-2xl font-bold text-[#2a513e] mb-4">Animated Book Preview</h3>
           <p className="text-gray-600 mb-6">
             Flip through this preview book using swipe or click! Let us know what style you like best.
           </p>

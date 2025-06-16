@@ -28,7 +28,7 @@ export default function LibraryPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
       {/* Header */}
-      <header className="w-full bg-[#6cc04a]">
+      <header className="w-full bg-[#2a513e]">
         <div className="relative w-full h-36 sm:h-48 md:h-56 lg:h-64">
           <Image
             src="/images/lafaekbanner.png"
@@ -46,7 +46,7 @@ export default function LibraryPage() {
         <div className="relative max-w-md mx-auto mb-4">
           <Input
             placeholder="Search for books..."
-            className="pl-10 pr-4 py-2 rounded-full bg-white text-black border border-green-300 focus:border-green-500"
+            className="pl-10 pr-4 py-2 rounded-full bg-white text-black border border-green-300 focus:border-green-700"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -65,7 +65,7 @@ export default function LibraryPage() {
               variant={selectedCategory === category ? "default" : "outline"}
               className={`rounded-full ${
                 selectedCategory === category
-                  ? "bg-green-600 text-white"
+                  ? "bg-green-700 text-white"
                   : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
               }`}
               size="sm"
@@ -88,7 +88,7 @@ export default function LibraryPage() {
 
       {/* Book Grid */}
       <main className="flex-1 container mx-auto px-4 pb-20">
-        <h2 className="text-xl font-bold text-[#6cc04a] mb-4">
+        <h2 className="text-xl font-bold text-[#2a513e] mb-4">
           {selectedCategory || "All"} Books
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
@@ -123,7 +123,7 @@ export default function LibraryPage() {
             </Link>
             <Link
               href="/library"
-              className="flex flex-col items-center text-[#6cc04a] font-semibold"
+              className="flex flex-col items-center text-[#2a513e] font-semibold"
             >
               <Book className="h-5 w-5" />
               Library

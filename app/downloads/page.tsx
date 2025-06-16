@@ -39,7 +39,7 @@ export default function DownloadsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
       {/* Header */}
-      <header className="w-full bg-[#6cc04a]">
+      <header className="w-full bg-[#2a513e]">
         <div className="relative w-full h-36 sm:h-48 md:h-56 lg:h-64">
           <Image
             src="/images/lafaekbanner.png"
@@ -87,7 +87,7 @@ export default function DownloadsPage() {
                       <Link href={`/book/${book.id}`}>
                         <Button
                           size="sm"
-                          className="bg-green-600 hover:bg-green-700 text-white"
+                          className="bg-green-700 hover:bg-green-800 text-white"
                         >
                           Read
                         </Button>
@@ -117,7 +117,7 @@ export default function DownloadsPage() {
               You haven’t downloaded any books yet.
             </p>
             <Link href="/library">
-              <Button className="bg-green-600 hover:bg-green-700 text-white">
+              <Button className="bg-green-700 hover:bg-green-800 text-white">
                 Browse Library
               </Button>
             </Link>
@@ -137,7 +137,7 @@ export default function DownloadsPage() {
               <Book className="h-5 w-5" />
               Library
             </Link>
-            <Link href="/downloads" className="flex flex-col items-center text-[#6cc04a] font-semibold">
+            <Link href="/downloads" className="flex flex-col items-center text-[#2a513e] font-semibold">
               <Download className="h-5 w-5" />
               Downloads
             </Link>
