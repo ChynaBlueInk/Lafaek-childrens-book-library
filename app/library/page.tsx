@@ -26,7 +26,7 @@ export default function LibraryPage() {
   });
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
+    <div className="flex flex-col min-h-screen bg-white text-black">
       {/* Header */}
       <header className="w-full bg-[#2a513e]">
         <div className="relative w-full h-36 sm:h-48 md:h-56 lg:h-64">

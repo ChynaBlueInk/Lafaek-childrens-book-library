@@ -29,7 +29,7 @@ export default function DemoBookPage() {
   const bookRef = useRef<any>(null);
 
   return (
-    <div className="min-h-screen bg-[#f0fdf4] flex flex-col items-center justify-center text-black">
+    <div className="min-h-screen bg-white flex flex-col items-center justify-center text-black">
       {/* Back Button */}
       <div className="absolute top-4 left-4">
         <Link href="/">

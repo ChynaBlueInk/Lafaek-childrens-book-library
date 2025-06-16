@@ -112,7 +112,7 @@ export default function BookPage() {
 
   if (!book) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-[#f0fdf4] text-black">
+      <div className="flex flex-col items-center justify-center min-h-screen p-8 text-center bg-white text-black">
         <h1 className="text-3xl font-bold text-red-500">Book Not Found</h1>
         <p className="text-gray-600 mt-4">This book ID doesn't exist.</p>
         <Link href="/library">
@@ -143,7 +143,7 @@ export default function BookPage() {
     };
 
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#f0fdf4] text-black py-6 px-2">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-white text-black py-6 px-2">
         <h1 className="text-xl font-bold mb-4 text-center">{book.title}</h1>
 
         <HTMLFlipBook
@@ -182,7 +182,7 @@ export default function BookPage() {
 
   // ✅ Default PDF Viewer
   return (
-    <div className="flex flex-col min-h-screen bg-[#f0fdf4] text-black">
+    <div className="flex flex-col min-h-screen bg-white text-black">
       <header className="w-full bg-[#2a513e] p-3 shadow-md">
         <div className="container mx-auto flex items-center">
           <Link href="/library" className="text-white">
