@@ -1,0 +1,137 @@
+export interface Book {
+  id: number;
+  title: string;
+  category: string;
+  cover: string;
+  pdf: string;
+  imagesFolder?: string;
+  isFeatured?: boolean;
+  lastReadPage?: number | null;
+  likes: number;
+  downloads: number;
+}
+
+export const books: Book[] = [
+  {
+    id: 1,
+    title: "LK Bee Maran",
+    category: "Reading Books",
+    cover: "/images/BS_LK/bee_maran.png",
+    pdf: "/book/Reading-Books/LK_bee_maran.pdf",
+    isFeatured: true,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 2,
+    title: "LK Hamoos Tasi",
+    category: "Reading Books",
+    cover: "/images/BS_LK/hamoos_tasi.png",
+    pdf: "/book/Reading-Books/LK_hamoos_tasi.pdf",
+    isFeatured: true,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 3,
+    title: "LK Kafe Laku",
+    category: "Reading Books",
+    cover: "/images/BS_LK/kafe_laku.png",
+    pdf: "/book/Reading-Books/LK_kafe_laku.pdf",
+    isFeatured: false,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 4,
+    title: "LK Kuidadu Bee",
+    category: "Reading Books",
+    cover: "/images/BS_LK/Kuidadu_bee.png",
+    pdf: "/book/Reading-Books/LK_kuidadu_bee.pdf",
+    isFeatured: false,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 5,
+    title: "LK Tradisaun Oioin",
+    category: "Reading Books",
+    cover: "/images/BS_LK/tradisaun_oioin.png",
+    pdf: "/book/Reading-Books/LK_tradisaun_oioin.pdf",
+    isFeatured: false,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 6,
+    title: "LP Kanalizasaun",
+    category: "Reading Books",
+    cover: "/images/BS_LP/kanalizasaun_bee.png",
+    pdf: "/book/Reading-Books/LP_kanalizasaun.pdf",
+    isFeatured: false,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 7,
+    title: "LP Adventura",
+    category: "Reading Books",
+    cover: "/images/BS_LP/adventura.png",
+    pdf: "/book/Reading-Books/LP_adventura.pdf",
+    isFeatured: false,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 8,
+    title: "LP Nehan",
+    category: "Reading Books",
+    cover: "/images/BS_LP/nehan.png",
+    pdf: "/book/Reading-Books/LP_nehan.pdf",
+    isFeatured: false,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 9,
+    title: "LP Panel Solar",
+    category: "Reading Books",
+    cover: "/images/BS_LP/panel_solar.png",
+    pdf: "/book/Reading-Books/LP_panel_solar.pdf",
+    isFeatured: false,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 10,
+    title: "LP Salva Lenuk",
+    category: "Reading Books",
+    cover: "/images/BS_LP/salva_lenuk.png",
+    pdf: "/book/Reading-Books/LP_salva_lenuk.pdf",
+    isFeatured: false,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+  {
+    id: 11,
+    title: "LBK 2023 Edition 2",
+    category: "Lafaek Komunidade",
+    cover: "/images/BS_LBK/lbk2023ed2.png",
+    pdf: "/book/Komunidade/LBK-2023-Ed02.pdf",
+    imagesFolder: "/images/BS_LBK/LBKEd22023",
+    isFeatured: false,
+    lastReadPage: null,
+    likes: 0,
+    downloads: 0,
+  },
+];
